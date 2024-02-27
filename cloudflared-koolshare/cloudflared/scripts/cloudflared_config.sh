@@ -105,7 +105,6 @@ if [ ! -z "$cloudflared_ver" ] && [ ! -z "$tag" ] || [ ! -f "$cfd_bin" ] ; then
      cloudflared_ver="$(/tmp/cloudflared -v | awk {'print $3'})"
      if [ ! -z "$cloudflared_ver" ] ; then
      cp -rf /tmp/cloudflared ${cfd_bin}
-     rm -rf /tmp/cloudflared
      dbus set cloudflared_version=$cloudflared_ver
      logg "已成功更新至${cloudflared_ver}"
      fi
@@ -147,7 +146,7 @@ fun_start_stop(){
   logg "当前cloudflared启动参数 ${cfd_bin} ${cfd_cmd} "
   killall cloudflared 2>/dev/null
     rm -rf /var/run/cloudflared.pid
-    start-stop-daemon --start --quiet --make-pidfile --pidfile /var/run/cloudflared.pid --background --startas /bin/sh -- -c  "${cfd_bin} ${cfd_cmd} >>${cfd_logs} 2>&1"
+    start-stop-daemon --start --quiet --make-pidfile --pidfile /var/run/cloudflared.pid --background --startas /bin/sh -- -c  "${cfd_bin} ${cfd_cmd} >>${cfd_logs} 2>&1 &"
    sleep 5
    [ ! -z "$(pidof cloudflared)" ] && logg "cloudflared启动成功！"
    echo `date +%s` > /tmp/cloudflared_time
