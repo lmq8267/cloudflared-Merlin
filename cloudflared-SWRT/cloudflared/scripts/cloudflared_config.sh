@@ -35,7 +35,7 @@ fun_crontab(){
      if [ "${cfd_cron_hour_min}" == "min" ] && [ "${cfd_cron_time}"x != "0"x ] ; then
         if [ "${cfd_cron_type}" == "watch" ]; then
         	cru a cloudflared_monitor "*/"${cfd_cron_time}" * * * * /bin/sh /jffs/softcenter/scripts/cloudflared_config.sh watch"
-        elif [ "${webd_cron_type}" == "start" ]; then
+        elif [ "${cfd_cron_type}" == "start" ]; then
             cru a cloudflared_monitor "*/"${cfd_cron_time}" * * * * /bin/sh /jffs/softcenter/scripts/cloudflared_config.sh restart"
     	fi
     elif [ "${cfd_cron_hour_min}" == "hour" ] && [ "${cfd_cron_time}"x != "0"x ] ; then
