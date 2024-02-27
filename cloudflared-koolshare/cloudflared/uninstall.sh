@@ -20,7 +20,7 @@ done
 sleep 1
 rm -rf /koolshare/scripts/cloudflared*
 rm -rf /koolshare/bin/cloudflared*
-rm -rf /koolshare/init.d/?99cloudflared.sh
+rm -rf /koolshare/init.d/?89cloudflared.sh
 rm -rf /koolshare/webs/Module_cloudflared.asp
 rm -rf /koolshare/res/icon-cloudflared.png
 
