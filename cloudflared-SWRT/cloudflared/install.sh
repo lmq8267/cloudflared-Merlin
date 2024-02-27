@@ -22,12 +22,12 @@ cp -rf /tmp/cloudflared/scripts/* /jffs/softcenter/scripts/
 cp -rf /tmp/cloudflared/webs/* /jffs/softcenter/webs/
 cp -rf /tmp/cloudflared/res/* /jffs/softcenter/res/
 cp /tmp/cloudflared/uninstall.sh /jffs/softcenter/scripts/uninstall_cloudflared.sh
-ln -sf /jffs/softcenter/scripts/cloudflared_config.sh /jffs/softcenter/init.d/S99cloudflared.sh
+ln -sf /jffs/softcenter/scripts/cloudflared_config.sh /jffs/softcenter/init.d/S89cloudflared.sh
 
 
 
 chmod +x /jffs/softcenter/scripts/cloudflared_*
-chmod +x /jffs/softcenter/init.d/S99cloudflared.sh
+chmod +x /jffs/softcenter/init.d/S89cloudflared.sh
 chmod +x /jffs/softcenter/scripts/uninstall_cloudflared.sh
 dbus set softcenter_module_cloudflared_description="Cloudflare Tunnel 客户端(以前称为 Argo Tunnel)"
 dbus set softcenter_module_cloudflared_install=1
