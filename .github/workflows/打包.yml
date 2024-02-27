@@ -1,0 +1,56 @@
+name: 打包发布
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: tar
+        run: |
+          git clone https://github.com/lmq8267/cloudflared-merlin /opt/src
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          cd /opt/src/cloudflared-SWRT
+          rm -rf cloudflared-SWRT.tar.gz 
+          tar czvf cloudflared-SWRT.tar.gz cloudflared
+          cd /opt/src/cloudflared-koolshare
+          rm -rf cloudflared-koolshare.tar.gz
+          tar czvf cloudflared-koolshare.tar.gz cloudflared
+          cd /opt/src
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          if git status --porcelain | grep .; then
+          git add .
+          git commit -am "更新时间： $(date '+%Y-%m-%d %H:%M:%S')"
+          git push --quiet "https://${{ secrets.c8 }}@github.com/lmq8267/cloudflared-merlin.git"
+          else
+          echo "没有任何变动，无需上传提交！"
+          fi 
+          
+          echo "tar_time=$(date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+          echo "tag=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+      - 
+        name: 发布
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.c8 }}
+          body: |
+           > ### 更新时间：${{ env.tar_time }}
+
+           - **cloudflared-SWRT.tar.gz**：SWRT梅林的离线安装包
+
+           - **cloudflared-koolshare.tar.gz**：koolshare梅林的离线安装包
+
+          tag_name: ${{ env.tag }}
+          files: |
+            /opt/src/cloudflared-SWRT/cloudflared-SWRT.tar.gz
+            /opt/src/cloudflared-koolshare/cloudflared-koolshare.tar.gz
+      - 
+       name: 删除工作流
+       uses: GitRML/delete-workflow-runs@main
+       with:
+        token: ${{ secrets.c8 }}
+        retain_days: 1
+        keep_minimum_runs: 0
+     
