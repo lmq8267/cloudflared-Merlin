@@ -19,7 +19,7 @@ done
 sleep 1
 rm -rf /jffs/softcenter/scripts/cloudflared*
 rm -rf /jffs/softcenter/bin/cloudflared*
-rm -rf /jffs/softcenter/init.d/?99cloudflared.sh
+rm -rf /jffs/softcenter/init.d/?89cloudflared.sh
 rm -rf /jffs/softcenter/webs/Module_cloudflared.asp
 rm -rf /jffs/softcenter/res/icon-cloudflared.png
 
