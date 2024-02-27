@@ -1,7 +1,7 @@
 #!/bin/sh
 
-eval `dbus export cloudflared_`
 source /jffs/softcenter/scripts/base.sh
+eval `dbus export cloudflared_`
 mkdir -p /tmp/upload
 cfd_enable=`dbus get cloudflared_enable`
 cfd_cron_time=`dbus get cloudflared_cron_time`
@@ -24,7 +24,7 @@ logg () {
 # 自启
 fun_nat_start(){
     if [ "${cloudflared_enable}"x = "1"x ] ;then
-	    [ ! -L "/jffs/softcenter/init.d/S99cloudflared.sh" ] && ln -sf /jffs/softcenter/scripts/cloudflared_config.sh /jffs/softcenter/init.d/S99cloudflared.sh
+	    [ ! -L "/jffs/softcenter/init.d/S89cloudflared.sh" ] && ln -sf /jffs/softcenter/scripts/cloudflared_config.sh /jffs/softcenter/init.d/S89cloudflared.sh
     fi
 }
 # 定时任务
@@ -185,6 +185,16 @@ update)
         fun_update
 	http_response "$1"
     ;;
+*)
+ if [ "${cloudflared_enable}" != "1" ] ; then
+   logger "【软件中心】：未开启 cloudflared ，无需启动..."
+   exit
+ fi
+    logger "【软件中心】：启动 cloudflared..."
+	fun_start_stop
+	fun_nat_start
+	fun_crontab
+	;;
 esac
 # 界面提交的参数
 case $2 in
