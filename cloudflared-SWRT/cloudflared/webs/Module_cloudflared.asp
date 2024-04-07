@@ -263,7 +263,10 @@ function get_log() {
             if (res.length == 0){
             E("logtxt").value = "日志文件为空或程序未启动"; 
             get_log();
-			}else{ $('#logtxt').val(res); }
+			}else{ $('#logtxt').val(res); 
+                        var textarea = document.getElementById('logtxt');
+                        textarea.scrollTop = textarea.scrollHeight; 
+                    }
 		}
 	});
 }
