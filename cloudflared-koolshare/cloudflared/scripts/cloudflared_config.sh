@@ -99,7 +99,7 @@ if [ ! -z "$cloudflared_ver" ] && [ ! -z "$tag" ] || [ ! -f "$cfd_bin" ] ; then
    ;;
    esac
     chmod 755  /tmp/cloudflared
-   if [ $(($(/tmp/cloudflared -h | wc -l))) -lt 3 ] ; then
+   if [ $(($(/tmp/cloudflared -h 2>&1 | wc -l))) -lt 3 ] ; then
      logg "下载失败，无法更新..."
    else
      cloudflared_ver="$(/tmp/cloudflared -v | awk {'print $3'})"
@@ -133,7 +133,7 @@ fun_start_stop(){
   [ "$cfd_mode" = "token" ] && [ -z "$cfd_token" ] && logg "未获取到隧道token，无法启动，请检查隧道token值是否填写，程序退出" && return 1
   [ "$cfd_mode" = "user_cmd" ] && [ -z "$user_cmd" ] && logg "未获取到自定义启动参数，无法启动，请检查自定义启动参数是否填写，程序退出" && return 1
   chmod +x ${cfd_bin}
-  [ $(($($cfd_bin -h | wc -l))) -lt 3 ] && rm -rf ${cfd_bin} && fun_update
+  [ $(($($cfd_bin -h 2>&1 | wc -l))) -lt 3 ] && rm -rf ${cfd_bin} && fun_update
   chmod +x ${cfd_bin}
   cloudflared_ver="$($cfd_bin -v | awk {'print $3'})"
   dbus set cloudflared_version=$cloudflared_ver
