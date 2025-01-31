@@ -13,9 +13,10 @@ cputype=$(uname -ms | tr ' ' '_' | tr '[A-Z]' '[a-z]')
 [ -n "$(echo $cputype | grep -E "linux.*armv7.*")" ] && [ -n "$(cat /proc/cpuinfo | grep vfp)" ] && cpucore="arm"
 [ -n "$(echo $cputype | grep -E "linux.*aarch64.*|linux.*armv8.*")" ] && cpucore="aarch64"
 scriptname=$(basename $0)
-  proxy_url="https://hub.gitmirror.com/"
-  proxy_url2="http://gh.ddlc.top/"
-  
+proxy_url="https://hub.gitmirror.com/"
+proxy_url2="http://gh.ddlc.top/"
+user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+
 logg () {
    echo "【$(TZ=UTC-8 date -R +%Y年%m月%d日\ %X)】:  $1" >>${cfd_logs}
    echo -e "\033[36;1m【$(TZ=UTC-8 date -R +%Y年%m月%d日\ %X)】: \033[0m\033[35;1m$1 \033[0m"
