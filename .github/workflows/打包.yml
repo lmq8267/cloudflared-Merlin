@@ -24,7 +24,7 @@ jobs:
           keep_minimum_runs: 0
       - name: tar
         run: |
-          git clone https://github.com/lmq8267/cloudflared-merlin /opt/src
+          git clone https://github.com/${{ github.repository }} /opt/src
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           cd /opt/src/cloudflared-SWRT
