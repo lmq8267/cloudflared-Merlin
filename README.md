@@ -1,6 +1,6 @@
 # cloudflared - 梅林离线安装包
 <p align="center">
-  <img alt="GitHub Created At" src="https://img.shields.io/github/created-at/lmq8267/vnt?logo=github&label=%E5%88%9B%E5%BB%BA%E6%97%A5%E6%9C%9F">
+  <img alt="GitHub Created At" src="https://img.shields.io/github/created-at/lmq8267/cloudflared-merlin?logo=github&label=%E5%88%9B%E5%BB%BA%E6%97%A5%E6%9C%9F">
 <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Flmq8267%2Fcloudflared-merlin&count_bg=%2395C10D&title_bg=%23555555&icon=github.svg&icon_color=%238DC409&title=%E8%AE%BF%E9%97%AE%E6%95%B0&edge_flat=false"/></a>
 <a href="https://github.com/lmq8267/cloudflared-merlin/releases"><img src="https://img.shields.io/github/downloads/lmq8267/cloudflared-merlin/total?logo=github&label=%E4%B8%8B%E8%BD%BD%E9%87%8F"></a>
 <a href="https://github.com/lmq8267/cloudflared-merlin/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/lmq8267/cloudflared-merlin?logo=github&label=%E8%B4%A1%E7%8C%AE%E8%80%85"></a>
